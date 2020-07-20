@@ -25,14 +25,10 @@ router.get('/city/:cityName', async (req,res) => {
 })
 
 router.post('/city', async (req, res) => {
+  const {name,temp,condition,conditionPic} = req.body
   //validateData(req.body)
   try {
-    const cityToSave = new City({
-      name: "AMSTERDAM",
-      temp: 999,
-      condition: "Sunny",
-      conditionPic:"google.com"
-    })
+    const cityToSave = new City({name,temp,condition,conditionPic})
     const response = await cityToSave.save()
     res.send(response)
   }catch(err){
