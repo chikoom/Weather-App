@@ -8,11 +8,33 @@
 </head>
 <body>
   
-  <div id="root-container"></div>
+  <div id="root-container">
+    <header>
+      <div id="main-city-container">
 
-  <script id="weather-template" type="text/x-handlebars-template">
+      </div>
+    </header>
+    <nav>
+      <div id="search-container">
+        <input type="text" id="city-query">
+        <button id="btn-search">Search</button>
+      </div>
+    </nav>
+    <main></main>
+  </div>
+
+  <script id="cities-template" type="text/x-handlebars-template">
+    <div></div>
   </script>
-  
+
+  <script id="mainCity-template" type="text/x-handlebars-template">
+    <div class="main-city-text">
+      <div class="main-city-temp">{{temp}}</div>
+      <div class="main-city-feels">{{description}}, feels like {{feelsLike}}</div>
+      <div class="main-city-name">{{name}}</div>
+    </div>
+  </script>
+
   <script src="./handlebars/dist/handlebars.min.js"></script>
   <script src="./jquery/dist/jquery.min.js"></script>
   <script src="scripts/main.js" type="module"></script>

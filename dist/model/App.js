@@ -1,5 +1,6 @@
 export class App{
   constructor(){
+    this.currentCity = {}
     this.cityData = []
   }
   async getDataFromDB(){
@@ -8,12 +9,20 @@ export class App{
     return this.cityData
   }
   async getCityData(city){
-    return $.get(`/city/${city}`)
+    return await $.get(`/city/${city}`)
+  }
+  async getCityLatLon(latitude,longitude){
+    return await $.get(`/city/${latitude}/${longitude}`)
   }
   async saveCity(data){
-    return $.post(`/city/`,data)
+    return await $.post(`/city/`,data)
   }
   async removeCity(cityId){
-    return $.delete(`/city/`,data)
+    return await $.delete(`/city/`,data)
+  }
+  getUserLocation(){
+    return new Promise(function(resolve,reject){
+      navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy: true})
+    })
   }
 }

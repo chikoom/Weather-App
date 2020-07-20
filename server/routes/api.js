@@ -14,8 +14,37 @@ router.get('/city/:cityName', async (req,res) => {
   console.log(req.params.cityName)
   const {cityName} = req.params
   try{
-    let response = await axios.get(API_URL,{params:{appid: API_KEY,q:cityName}})
-    res.send(response.data)
+    let response = await axios.get(API_URL,{params:{units:'metric',appid: API_KEY,q:cityName}})
+    const formatedRes = {
+      temp: response.data.main.temp,
+      feelsLike: response.data.main.feels_like,
+      name: response.data.name,
+      description: response.data.weather[0].description,
+      description2: response.data.weather[0].main
+    }
+    res.send(formatedRes)
+  }catch(err){
+    console.error(err)
+    res.status(500)
+  }finally{
+    res.end()
+  }
+})
+
+router.get('/city/:lat/:lon', async (req,res) => {
+  console.log(req.params)
+  const {lat, lon} = req.params
+  try{
+    let response = await axios.get(API_URL,{params:{units:'metric',appid: API_KEY,lat,lon}})
+    console.log(response)
+    const formatedRes = {
+      temp: response.data.main.temp,
+      feelsLike: response.data.main.feels_like,
+      name: response.data.name,
+      description: response.data.weather[0].description,
+      description2: response.data.weather[0].main
+    }
+    res.send(formatedRes)
   }catch(err){
     console.error(err)
     res.status(500)
