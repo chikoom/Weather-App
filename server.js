@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -15,8 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use('/', router)
-
-const PORT = 4321
+const PORT = process.env.PORT || 4321
 app.listen(PORT, function(){
   console.log(`Server is Serving, give it a Tip at PORT ${PORT}`)
 })
