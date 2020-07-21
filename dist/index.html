@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bad Weather. Bad!</title>
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./@fortawesome/fontawesome-free/css/all.css">
 </head>
 <body>
   
@@ -17,7 +18,7 @@
     <nav>
       <div id="search-container">
         <input type="text" id="city-query">
-        <button id="btn-search">Search</button>
+        <button id="btn-search"><i class="fas fa-search"></i></button>
       </div>
     </nav>
     <main>
@@ -31,7 +32,7 @@
         <div class="saved-city-name">{{name}}</div>
         <div class="saved-city-temp">{{temp}}</div>
         <div class="saved-city-condition">{{condition}}</div>
-        <button class="saved-city-remove">+</button>
+        <button class="saved-city-remove"><i class="far fa-trash-alt"></i></button>
       </div> 
     {{/each}}
   </script>
@@ -46,7 +47,7 @@
         <div class="main-city-condition">{{condition}}</div>
         <div class="main-city-feel">feels like {{#tempFormatter}}{{feelsLike}}{{/tempFormatter}}</div>
       </div>
-      <button class="main-city-save">+</button>
+      <button class="main-city-save"><i class="far fa-share-square"></i></button>
     </div>
   </div>
   </script>

@@ -1,6 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
 body{
     font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+/** SEARCH BAR **/
+#search-container{
+    background-color: #98ccf3;
+    max-width: 300px;
+    border-radius: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+}
+#city-query{
+    height: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border:0;
+    outline:0;
+    width:100%;
+    background-color: #98ccf3;
+    color:#fff;
+    box-shadow: inset 0px 0px 5px 1px #648ac8;
+    padding:0px 50px 0px 20px;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+#btn-search{
+    cursor: pointer;
+    height: 50px;
+    width:50px;
+    float: right;
+    border-radius: 50px;
+    border:0;
+    outline:0;
+    box-shadow: -2px 0px 5px #648ac8;
+    box-shadow: inset 0px 0px 5px 1px #47655b;
+    background-color: #20906f;
+    color:#fff;
+    float: left;
+    position: absolute;
+    top:0;
+    right:0;
+}
+#btn-search:hover{
+    box-shadow: inset 0px 0px 5px 1px #afafaf;
+}
+#btn-search:active{
+    box-shadow: inset 0px 0px 5px 1px #afafaf;
+    box-shadow: inset 0px 0px 5px 1px #47655b;
 }
 .main-city-bg{
     display: grid;
@@ -62,4 +115,42 @@ body{
 .main-city-save:hover{
     transform:scale(0.95);
     box-shadow: 1px 1px 2px #333;
+}
+/** SAVED CITIES **/
+#saved-cities-container{
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap:20px;
+    justify-content: center;
+}
+.saved-city-container{
+    cursor: pointer;
+display: grid;
+grid-template-areas:
+    "name deg but"
+    "cond deg but";
+width: 320px;
+    box-shadow: 1px 1px 1px 1px #dfdfdf;
+    padding: 10px;
+}
+.saved-city-container:hover{
+    transform:scale(0.97)
+}
+.saved-city-name{
+    grid-area: name;
+    font-weight: 600;
+    font-size: 20px;
+}
+.saved-city-temp{
+    grid-area: deg;
+    font-size: 25px;
+    align-content: center;
+    display: grid;
+}
+.saved-city-condition{
+    grid-area: cond;
+}
+.saved-city-remove{
+    grid-area: but;
+    
 }
