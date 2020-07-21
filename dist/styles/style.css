@@ -155,7 +155,8 @@ body{
 display: grid;
 grid-template-areas:
     "sicon name deg but"
-    "sicon cond deg but";
+    "sicon cond deg but"
+    "update update update update";
 width: 320px;
     box-shadow: 1px 1px 1px 1px #dfdfdf;
     padding: 10px;
@@ -178,6 +179,7 @@ width: 320px;
     grid-area: name;
     font-weight: 600;
     font-size: 20px;
+    width: 150px;
 }
 .saved-city-temp{
     grid-area: deg;
@@ -187,6 +189,11 @@ width: 320px;
 }
 .saved-city-condition{
     grid-area: cond;
+}
+.saved-city-updated{
+    font-size: 10px;
+    grid-area: update;
+    text-align: right;
 }
 .saved-city-buttons{
     grid-area: but;

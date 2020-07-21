@@ -23,3 +23,7 @@ Handlebars.registerHelper('tempFormatter', function(opts) {
   temp = temp.split('.')[0]+'°'
   return temp
 })
+Handlebars.registerHelper('lastUpadte', function(opts) {
+  const aestTime = new Date(opts.fn(this)).toLocaleString("en-US", {timeZone: "Asia/Jerusalem"})
+  return aestTime
+})

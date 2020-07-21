@@ -15,8 +15,20 @@ const loadPage = async () => {
   .catch(err => {
     console.error(err.message)
   })
-
   const allData = await app.getDataFromDB()
+  render.renderData(allData)
+}
+
+const syncOne = async function(){
+  const cityIdToSync = $(this).closest('.saved-city-container').data().id
+  const allData = await app.updateOne(cityIdToSync)
+  console.log(allData)
+  render.renderData(allData)
+}
+
+const syncAll = async () => {
+  const allData = await app.updateAll()
+  console.log(allData)
   render.renderData(allData)
 }
 
@@ -42,4 +54,6 @@ const handleDelete = async function(){
 $('#btn-search').on('click', handleSearch)
 $('#main-city-container').on('click', '.main-city-save', handleSave)
 $('#saved-cities-container').on('click', '.saved-city-remove', handleDelete)
+$('#sync-all').on('click', syncAll)
+$('#saved-cities-container').on('click', '.saved-city-sync', syncOne)
 loadPage()
