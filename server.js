@@ -10,8 +10,9 @@ const router = require('./server/routes/api')
 const app = express()
 
 
-mongoose.connect("mongodb://localhost/weather",
-{ useNewUrlParser: true, useUnifiedTopology: true })
+const connectionString = (process.env.NODE_ENV === "production")?process.env.DB_STRING:process.env.DEV_DB
+
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(express.static(path.join(__dirname, 'dist')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
