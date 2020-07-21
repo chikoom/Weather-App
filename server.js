@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use('/', router)
-const PORT = process.env.PORT || 4321
+const PORT = process.env.PORT || process.env.DEV_PORT
 app.listen(PORT, function(){
   console.log(`Server is Serving, give it a Tip at PORT ${PORT}`)
 })

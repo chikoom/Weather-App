@@ -7,6 +7,29 @@ body{
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
 }
+#sync-all{
+    position: absolute;
+    top:2%;
+    right:2%;
+    background-color: #38aa2e;
+    color:#fff;
+    padding:10px;
+    border-radius: 100px;
+    outline: 0;
+    border:0;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 1px #8b8b8b;
+    font-size:15px;
+    line-height: 15px;
+}
+#sync-all:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 5px 1px #8b8b8b;
+}
+#sync-all:active{
+    transform: scale(0.95);
+    box-shadow: 1px 1px 3px 1px #8b8b8b;
+}
 /** SEARCH BAR **/
 #search-container{
     background-color: #98ccf3;
@@ -105,16 +128,20 @@ body{
     border-radius: 35px;
     border:0;
     outline:0;
-    box-shadow: 1px 1px 5px #333;
+    text-shadow: 1px 1px 5px #333;
     cursor: pointer;
     font-weight: 900;
-    font-size: 20px;
-    color:#fff;
-    background-color: #b3d07b;
+    font-size: 40px;
+    color:#77e3a1;
+    background-color: transparent;
 }
 .main-city-save:hover{
+    transform:scale(1.05);
+    text-shadow: 1px 1px 5px #333;
+}
+.main-city-save:active{
     transform:scale(0.95);
-    box-shadow: 1px 1px 2px #333;
+    text-shadow: 1px 1px 2px #333;
 }
 /** SAVED CITIES **/
 #saved-cities-container{
@@ -127,14 +154,25 @@ body{
     cursor: pointer;
 display: grid;
 grid-template-areas:
-    "name deg but"
-    "cond deg but";
+    "sicon name deg but"
+    "sicon cond deg but";
 width: 320px;
     box-shadow: 1px 1px 1px 1px #dfdfdf;
     padding: 10px;
 }
 .saved-city-container:hover{
-    transform:scale(0.97)
+    transform:scale(1.02);
+    box-shadow: 1px 1px 5px 1px #ececec;
+}
+.saved-city-container:active{
+    transform:scale(1)
+}
+.saved-city-icon{
+    grid-area: sicon;
+    width:50px;
+}
+.saved-city-icon img{
+    width:100%;
 }
 .saved-city-name{
     grid-area: name;
@@ -150,7 +188,29 @@ width: 320px;
 .saved-city-condition{
     grid-area: cond;
 }
-.saved-city-remove{
+.saved-city-buttons{
     grid-area: but;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+}
+.saved-city-sync{
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    color:#43993b;
+    cursor:pointer;
+}
+.saved-city-remove{
     
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    color:#af3d3d;
+    cursor:pointer;
+}
+.saved-city-remove:hover{
+    color:#ff0000;
+}
+.saved-city-sync:hover{
+    color:#2bcb16;
 }

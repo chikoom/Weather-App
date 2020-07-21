@@ -11,6 +11,7 @@
   
   <div id="root-container">
     <header>
+      <button id="sync-all"><i class="fas fa-sync-alt"></i></button>
       <div id="main-city-container">
 
       </div>
@@ -29,10 +30,15 @@
   <script id="cities-template" type="text/x-handlebars-template">
     {{#each data}}
       <div class="saved-city-container" data-id="{{_id}}">
+        <div class="saved-city-icon"><img src="http://openweathermap.org/img/wn/{{icon}}@2x.png"></div>
         <div class="saved-city-name">{{name}}</div>
-        <div class="saved-city-temp">{{temp}}</div>
+        <div class="saved-city-temp">{{#tempFormatter}}{{temp}}{{/tempFormatter}}</div>
         <div class="saved-city-condition">{{condition}}</div>
-        <button class="saved-city-remove"><i class="far fa-trash-alt"></i></button>
+        <div class="saved-city-buttons">
+          <button class="saved-city-sync"><i class="fas fa-sync-alt"></i></button>
+          <button class="saved-city-remove"><i class="far fa-trash-alt"></i></button>
+        </div>
+        
       </div> 
     {{/each}}
   </script>
@@ -47,7 +53,7 @@
         <div class="main-city-condition">{{condition}}</div>
         <div class="main-city-feel">feels like {{#tempFormatter}}{{feelsLike}}{{/tempFormatter}}</div>
       </div>
-      <button class="main-city-save"><i class="far fa-share-square"></i></button>
+      <button class="main-city-save"><i class="fas fa-plus-circle"></i></button>
     </div>
   </div>
   </script>
