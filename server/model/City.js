@@ -4,8 +4,9 @@ const Schema = mongoose.Schema
 const citySchema = new Schema({
   name: String,
   temp: Number,
+  feelsLike: Number,
   condition: String,
-  conditionPic:String
+  icon:String
 })
 const City = mongoose.model('City', citySchema)
 module.exports = City

@@ -4,8 +4,9 @@ export class Render{
     this.mainCityTemplate = Handlebars.compile($('#mainCity-template').html())
   }
   renderData(data){
-    const templateHTML = this.resultsTemplate({ data })
-    $('#results').append(templateHTML)
+    console.log(data)
+    const templateHTML = this.citiesTemplate({ data })
+    $('#saved-cities-container').empty().append(templateHTML)
   }
   renderMainArea(data){
     console.log(data)
@@ -13,3 +14,12 @@ export class Render{
     $('#main-city-container').empty().append(templateHTML)
   }
 }
+
+Handlebars.registerHelper('imgUrlFormatter', function(opts) {
+  return opts.fn(this).replace(' ', '-')
+})
+Handlebars.registerHelper('tempFormatter', function(opts) {
+  let temp = opts.fn(this)
+  temp = temp.split('.')[0]+'°'
+  return temp
+})

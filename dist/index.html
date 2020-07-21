@@ -20,19 +20,35 @@
         <button id="btn-search">Search</button>
       </div>
     </nav>
-    <main></main>
+    <main>
+      <div id="saved-cities-container"></div>
+    </main>
   </div>
 
   <script id="cities-template" type="text/x-handlebars-template">
-    <div></div>
+    {{#each data}}
+      <div class="saved-city-container" data-id="{{_id}}">
+        <div class="saved-city-name">{{name}}</div>
+        <div class="saved-city-temp">{{temp}}</div>
+        <div class="saved-city-condition">{{condition}}</div>
+        <button class="saved-city-remove">+</button>
+      </div> 
+    {{/each}}
   </script>
 
   <script id="mainCity-template" type="text/x-handlebars-template">
+  <div class="main-city-bg" style="background-image: url(./assets/{{#imgUrlFormatter}}{{condition}}{{/imgUrlFormatter}}.jpg);">
     <div class="main-city-text">
-      <div class="main-city-temp">{{temp}}</div>
-      <div class="main-city-feels">{{description}}, feels like {{feelsLike}}</div>
+      <div class="main-city-temp">{{#tempFormatter}}{{temp}}{{/tempFormatter}}</div>
       <div class="main-city-name">{{name}}</div>
+      <div class="main-city-icon-container">
+        <div class="main-city-icon"><img src="http://openweathermap.org/img/wn/{{icon}}@2x.png"></div>
+        <div class="main-city-condition">{{condition}}</div>
+        <div class="main-city-feel">feels like {{#tempFormatter}}{{feelsLike}}{{/tempFormatter}}</div>
+      </div>
+      <button class="main-city-save">+</button>
     </div>
+  </div>
   </script>
 
   <script src="./handlebars/dist/handlebars.min.js"></script>

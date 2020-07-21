@@ -1,6 +1,6 @@
 const express = require('express')
 const axios = require('axios')
-const { Mongoose } = require('mongoose')
+const mongoose = require('mongoose')
 const City = require('../model/City')
 const router = express.Router()
 const API_KEY = process.env.WEATHER_API_KEY || ''
@@ -19,8 +19,8 @@ router.get('/city/:cityName', async (req,res) => {
       temp: response.data.main.temp,
       feelsLike: response.data.main.feels_like,
       name: response.data.name,
-      description: response.data.weather[0].description,
-      description2: response.data.weather[0].main
+      icon: response.data.weather[0].icon,
+      condition: response.data.weather[0].description,
     }
     res.send(formatedRes)
   }catch(err){
@@ -41,8 +41,8 @@ router.get('/city/:lat/:lon', async (req,res) => {
       temp: response.data.main.temp,
       feelsLike: response.data.main.feels_like,
       name: response.data.name,
-      description: response.data.weather[0].description,
-      description2: response.data.weather[0].main
+      icon: response.data.weather[0].icon,
+      condition: response.data.weather[0].description,
     }
     res.send(formatedRes)
   }catch(err){
@@ -54,10 +54,10 @@ router.get('/city/:lat/:lon', async (req,res) => {
 })
 
 router.post('/city', async (req, res) => {
-  const {name,temp,condition,conditionPic} = req.body
+  const {name,temp,condition,feelsLike,icon} = req.body
   //validateData(req.body)
   try {
-    const cityToSave = new City({name,temp,condition,conditionPic})
+    const cityToSave = new City({name,temp,feelsLike,condition,icon})
     const response = await cityToSave.save()
     res.send(response)
   }catch(err){
@@ -82,11 +82,12 @@ router.get('/cities', async (req,res) => {
 
 router.delete('/city/:cityId', async (req,res) => {
   const {cityId} = req.params
+  console.log(cityId)
   try{
     let response = await City.findOneAndDelete({_id:cityId}).exec()
     res.send(response)
   }catch(err){
-    console.error(err)
+    //console.error(err)
     res.status(500)
   }finally{
     res.end()

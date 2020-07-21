@@ -18,21 +18,41 @@ Deletes that city from your DB
 */
 
 const loadPage = async () => {
+
   app.getUserLocation().then(position => {
-    console.log(position)
     return app.getCityLatLon(position.coords.latitude,position.coords.longitude)
   }).then(data => {
-    render.renderMainArea(data)
+    app.setCurrentCity(data)
+    render.renderMainArea(app.currentCity)
   })
   .catch(err => {
     console.error(err.message)
   })
-  //const data = await app.getDataFromDB()
-  //render.renderData(data)
+
+  const allData = await app.getDataFromDB()
+  render.renderData(allData)
 }
 
-const handleSearch = async (cityName) => {
-  app.getCityData(city)
+const handleSearch = async () => {
+  const cityName = $('#city-query').val()
+  const data = await app.getCityData(cityName)
+  app.setCurrentCity(data)
+  render.renderMainArea(app.currentCity)
 }
 
+const handleSave = async () => {
+  const response = await app.saveCurrentCity()
+  const allData = await app.getDataFromDB()
+  render.renderData(allData)
+}
+
+const handleDelete = async function(){
+  const cityIdToDelete = $(this).closest('.saved-city-container').data().id
+  const newData = await app.removeCity(cityIdToDelete)
+  render.renderData(newData)
+}
+
+$('#btn-search').on('click', handleSearch)
+$('#main-city-container').on('click', '.main-city-save', handleSave)
+$('#saved-cities-container').on('click', '.saved-city-remove', handleDelete)
 loadPage()
