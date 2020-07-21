@@ -17,6 +17,8 @@ router.get('/city/:cityName', async (req,res) => {
   const {cityName} = req.params
   try{
     let response = await axios.get(`${API_URL}/weather`,{params:{units:'metric',appid: API_KEY,q:cityName}})
+    let cityImage = await getCityImage(cityName)
+    console.log(cityImage)
     const formatedRes = {
       cityId:response.data.id,
       temp: response.data.main.temp,
@@ -24,7 +26,8 @@ router.get('/city/:cityName', async (req,res) => {
       name: response.data.name,
       icon: response.data.weather[0].icon,
       condition: response.data.weather[0].description,
-      lastUpdate: new Date()
+      lastUpdate: new Date(),
+      cityImage: cityImage
     }
     res.send(formatedRes)
   }catch(err){
@@ -40,6 +43,7 @@ router.get('/city/:lat/:lon', async (req,res) => {
   const {lat, lon} = req.params
   try{
     let response = await axios.get(`${API_URL}/weather`,{params:{units:'metric',appid: API_KEY,lat,lon}})
+    let cityImage = await getCityImage(response.data.name)
     console.log(response)
     const formatedRes = {
       cityId:response.data.id,
@@ -48,7 +52,8 @@ router.get('/city/:lat/:lon', async (req,res) => {
       name: response.data.name,
       icon: response.data.weather[0].icon,
       condition: response.data.weather[0].description,
-      lastUpdate: new Date()
+      lastUpdate: new Date(),
+      cityImage: cityImage
     }
     res.send(formatedRes)
   }catch(err){
@@ -60,10 +65,10 @@ router.get('/city/:lat/:lon', async (req,res) => {
 })
 
 router.post('/city', async (req, res) => {
-  const {name,temp,condition,feelsLike,icon,cityId,lastUpdate} = req.body
+  const {name,temp,condition,feelsLike,icon,cityId,lastUpdate,cityImage} = req.body
   //validateData(req.body)
   try {
-    const cityToSave = new City({name,temp,feelsLike,condition,icon,cityId,lastUpdate})
+    const cityToSave = new City({name,temp,feelsLike,condition,icon,cityId,lastUpdate,cityImage})
     const response = await cityToSave.save()
     res.send(response)
   }catch(err){
@@ -160,8 +165,13 @@ router.put('/updateCity/:cityId', async (req, res) => {
 })
 
 const getCityImage = async (cityName) => {
-  let response = await axios.get(`${IMAGE_URL}`,{params:{page:'1',client_id: IMAGE_KEY,query:cityName}})
-  console.log(response)
+  try{
+    let response = await axios.get(`${IMAGE_URL}`,{params:{per_page:1,page:1,client_id:IMAGE_KEY,query:cityName}})
+    return response.data.results[0].urls.full
+  } catch (err) {
+
+  }
+  
 }
 
 module.exports = router

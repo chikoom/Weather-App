@@ -8,7 +8,8 @@ const citySchema = new Schema({
   feelsLike: Number,
   condition: String,
   icon:String,
-  lastUpdate:Date
+  lastUpdate:Date,
+  cityImage:String
 })
 const City = mongoose.model('City', citySchema)
 module.exports = City
