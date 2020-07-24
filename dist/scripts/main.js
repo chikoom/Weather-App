@@ -22,13 +22,11 @@ const loadPage = async () => {
 const syncOne = async function(){
   const cityIdToSync = $(this).closest('.saved-city-container').data().id
   const allData = await app.updateOne(cityIdToSync)
-  console.log(allData)
   render.renderData(allData)
 }
 
 const syncAll = async () => {
   const allData = await app.updateAll()
-  console.log(allData)
   render.renderData(allData)
 }
 

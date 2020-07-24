@@ -4,12 +4,10 @@ export class Render{
     this.mainCityTemplate = Handlebars.compile($('#mainCity-template').html())
   }
   renderData(data){
-    console.log(data)
     const templateHTML = this.citiesTemplate({ data })
     $('#saved-cities-container').empty().append(templateHTML)
   }
   renderMainArea(data){
-    console.log(data)
     const templateHTML = this.mainCityTemplate(data)
     $('#main-city-container').empty().append(templateHTML)
   }
