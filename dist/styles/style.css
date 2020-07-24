@@ -5,8 +5,12 @@
 }
 body{
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
     overflow-x: hidden;
     background-size: cover;
+    background: rgb(9,9,121);
+    background: linear-gradient(168deg, rgba(9,9,121,1) 5%, rgba(26,147,237,1) 100%);
+    background-image: url(../assets/defaultBG.jpg);
 }
 #sync-all{
     position: absolute;
@@ -33,13 +37,13 @@ body{
 }
 /** SEARCH BAR **/
 #search-container{
-    background-color: #98ccf3;
+    background-color: #ffffff;
     max-width: 300px;
     border-radius: 50px;
     height: 50px;
     overflow: hidden;
     position: relative;
-    margin: 10px auto;
+    margin: 20px auto;
 }
 #city-query{
     height: 50px;
@@ -48,8 +52,8 @@ body{
     border:0;
     outline:0;
     width:100%;
-    background-color: #98ccf3;
-    color:#fff;
+    background-color: #ffffff;
+    color:#2c2c2c;
     box-shadow: inset 0px 0px 5px 1px #648ac8;
     padding:0px 50px 0px 20px;
     font-size: 25px;
@@ -78,6 +82,13 @@ body{
 #btn-search:active{
     box-shadow: inset 0px 0px 5px 1px #afafaf;
     box-shadow: inset 0px 0px 5px 1px #47655b;
+}
+/** MAIN CITY **/
+#main-city-container{
+    height: 50vh;
+    background: rgb(9,9,121);
+    background: linear-gradient(168deg, rgba(9,9,121,1) 5%, rgba(26,147,237,1) 100%);
+    //background-image: url(../assets/defaultBG.jpg);
 }
 .main-city-bg{
     display: grid;
@@ -155,24 +166,30 @@ body{
     grid-template-rows: auto;
     grid-gap:20px;
     justify-content: center;
+    margin-top:20px;
+    
 }
 .saved-city-container{
     cursor: pointer;
-display: grid;
-grid-template-areas:
+    display: grid;
+    grid-template-areas:
     "sicon name deg but"
     "sicon cond deg but"
     "update update update update";
-width: 320px;
-    box-shadow: 1px 1px 1px 1px #dfdfdf;
+    width: 320px;
+    box-shadow: 1px 1px 3px 0px rgba(32,32,32,0.71);
     padding: 10px;
+    background-color: rgba(255,255,255,0.27);
+    border-radius:5px;
 }
 .saved-city-container:hover{
     transform:scale(1.02);
-    box-shadow: 1px 1px 5px 1px #ececec;
+    box-shadow: 1px 1px 5px 1px rgba(32,32,32,0.71);
 }
 .saved-city-container:active{
-    transform:scale(1)
+    transform:scale(1);
+    box-shadow: 1px 1px 3px 0px rgba(32,32,32,0.71);
+
 }
 .saved-city-icon{
     grid-area: sicon;
@@ -184,7 +201,7 @@ width: 320px;
 .saved-city-name{
     grid-area: name;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 22px;
     width: 150px;
 }
 .saved-city-temp{
@@ -195,6 +212,7 @@ width: 320px;
 }
 .saved-city-condition{
     grid-area: cond;
+    font-size: 14px;
 }
 .saved-city-updated{
     font-size: 10px;
@@ -210,7 +228,7 @@ width: 320px;
     background-color: transparent;
     outline: 0;
     border: 0;
-    color:#43993b;
+    color:#52c547;
     cursor:pointer;
 }
 .saved-city-remove{
