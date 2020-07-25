@@ -6,6 +6,16 @@ const API_URL = process.env.WEATHER_URL || ''
 const IMAGE_KEY = process.env.IMAGES_API_KEY || ''
 const IMAGE_URL = process.env.IMAGES_URL || ''
 
+const checkLastUpdatedAndRefresh = async (citiesData) => {
+  const timeNow = new Date()
+  let citiesIdsToUpdate = citiesData.filter(city => ((timeNow - city.lastUpdate)/1000/60) > 30)
+                                    .map(city => city.cityId)
+                                    .join(',')
+  let newCities = ''
+  if(citiesIdsToUpdate.length > 0)
+    newCities = await getCitiesByIds(citiesIdsToUpdate)
+}
+
 const getCityWeatherById = async (cityId) => {
   let response = await axios.get(`${API_URL}/weather`,{params:{
     units:'metric',
@@ -86,5 +96,6 @@ module.exports = {
   getCityWeatherByLatLon,
   getCityWeatherByName,
   getCitiesByIds,
-  getCityWeatherById
+  getCityWeatherById,
+  checkLastUpdatedAndRefresh
 }

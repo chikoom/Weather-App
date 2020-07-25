@@ -88,7 +88,6 @@ body{
     height: 50vh;
     background: rgb(9,9,121);
     background: linear-gradient(168deg, rgba(9,9,121,1) 5%, rgba(26,147,237,1) 100%);
-    //background-image: url(../assets/defaultBG.jpg);
 }
 .main-city-bg{
     display: grid;

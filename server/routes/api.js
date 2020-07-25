@@ -4,7 +4,7 @@ const { formatObject,
         getCityImage,
         getCityWeatherByLatLon,
         getCityWeatherByName, getCitiesByIds,
-        getCityWeatherById
+        getCityWeatherById, checkLastUpdatedAndRefresh
       } = require('../helpers/functions')
 const router = express.Router()
 
@@ -53,10 +53,14 @@ router.post('/city', async (req, res) => {
   }
 })
 
+
+
 router.get('/cities', async (req,res) => {
   try {
-    let response = await City.find({}).exec()
-    res.send(response)
+    let allCities = await City.find({}).exec()
+    await checkLastUpdatedAndRefresh(allCities)
+    let updatedCities = await City.find({}).exec()
+    res.send(updatedCities)
   } catch(err) {
     console.error(err)
     res.status(500)
